@@ -1,0 +1,1 @@
+# have a standard function to display a color
