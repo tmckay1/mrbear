@@ -3,4 +3,4 @@ from .BaseLightController import BaseLightController
 class SengledLightController(BaseLightController):
 
   def turnOnColor(self,color):
-    pass
+    color = self._colors.get_color(color)

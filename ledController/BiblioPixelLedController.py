@@ -20,7 +20,7 @@ class BiblioPixelLedController(object):
     self._led.start()
 
   def turnOnColor(self, color):
-    bibColor = self._colors.get_color(color)
-    self._led.fill(bibColor)
+    color = self._colors.get_color(color)
+    self._led.fill(color)
     self._led.push_to_driver()
     self._led.start()
