@@ -1,6 +1,6 @@
 import speech_recognition as sr
 
-class BaseVoiceListener(object):
+class BaseListener(object):
 
   def __init__(self):
     super(object, self).__init__()

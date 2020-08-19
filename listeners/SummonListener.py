@@ -1,6 +1,6 @@
-from .BaseVoiceListener import BaseVoiceListener
+from .BaseListener import BaseListener
 
-class SummonListener(BaseVoiceListener):
+class SummonListener(BaseListener):
 
   def audioRecognized(self, audio):
     print("Sphinx thinks you said " + audio)
