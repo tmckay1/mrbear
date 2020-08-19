@@ -1,6 +1,7 @@
 from ledController.BiblioPixelLedController import BiblioPixelLedController
 from colors.BiblioPixelColors import BiblioPixelColors
 from lightController.SengledLightController import SengledLightController
+from colors.SengledColors import SengledColors
 
 from bibliopixel.drivers.PiWS281X import PiWS281X
 
@@ -15,9 +16,10 @@ ledController  = BiblioPixelLedController(colors, driver)
 
 # init lighting controller
 api = sengled.api_from_env()
+colors = SengledColors()
 colored_lights = api.filter_colored_lamps()
 living_room_lights = list(filter(lambda x: ("LivingRoom" in x.name), colored_lights))
-lightController = SengledLightController(api, colored_lights)
+lightController = SengledLightController(colors, api, colored_lights)
 
 
 # Create listener object that will listen for certain phrases
