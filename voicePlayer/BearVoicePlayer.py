@@ -3,7 +3,7 @@ from .BaseVoicePlayer import BaseVoicePlayer
 class BearVoicePlayer(BaseVoicePlayer):
 
   # path to generic audio tracks
-  _audio_repo = "../../bear_sounds/"
+  _audio_repo = "../bear_sounds/"
 
   def playEnding(self, name):
     self._playEndingPart1(1)
