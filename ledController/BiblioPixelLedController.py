@@ -1,5 +1,4 @@
-from bibliopixel.animation.fill import Fill
-from bibliopixel.animation.off import Off
+from bibliopixel.layout.strip import Strip
 
 # control the ambient leds around the personality
 class BiblioPixelLedController(object):
@@ -10,16 +9,18 @@ class BiblioPixelLedController(object):
   # bibliopixel animation for the leds
   _led = None
 
-  def __init__(self, colors, led):
+  def __init__(self, colors, driver):
     super(object, self).__init__()
     self._colors = colors
-    self._led = led
+    self._led = Strip(driver)
 
   def turnOff(self):
-    anim = Off(self._led)
-    anim.run()
+    self._led.all_off()
+    self._led.push_to_driver()
+    self._led.start()
 
   def turnOnColor(self, color):
     bibColor = self._colors.get_color(color)
-    anim = Fill(self._led, color = bibColor)
-    anim.run()
+    self._led.fill(bibColor)
+    self._led.push_to_driver()
+    self._led.start()
