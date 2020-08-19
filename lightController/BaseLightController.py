@@ -1,4 +1,3 @@
-# create a method to send commands to an API
 class BaseLightController(object):
 
   # colors object

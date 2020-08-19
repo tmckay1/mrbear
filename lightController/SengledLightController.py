@@ -7,4 +7,4 @@ class SengledLightController(BaseLightController):
     self._api.set_color(self._lights, color)
 
   def turnOff(self):
-    self._api.set_color(self._lights, self._colors.get_color("black"))
+    self._api.set_off(self._lights)

@@ -1,4 +1,4 @@
-# base color object to control specific lights
+# base color object to be overriden for specific lights
 class BaseColors(object):
 
   COLORS = {}
