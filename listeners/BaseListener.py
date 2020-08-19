@@ -5,7 +5,7 @@ class BaseListener(object):
   def __init__(self):
     super(object, self).__init__()
 
-  def listen():
+  def listen(self):
     while True:
       # obtain audio from the microphone
       r = sr.Recognizer()
