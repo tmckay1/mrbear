@@ -1,5 +1,5 @@
-from bibliopixel.animation.Fill import Fill
-from bibliopixel.animation.Off import Off
+from bibliopixel.animation.fill import Fill
+from bibliopixel.animation.off import Off
 
 # control the ambient leds around the personality
 class BiblioPixelLedController(object):
