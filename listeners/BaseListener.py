@@ -15,7 +15,7 @@ class BaseListener(object):
 
       # recognize speech using Sphinx
       try:
-        audio = r.recognize_sphinx(audio)
+        audio = r.recognize_google(audio)
         self.audioRecognized(audio)
       except sr.UnknownValueError:
         self.audioUnrecognized()
