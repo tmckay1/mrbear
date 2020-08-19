@@ -7,10 +7,14 @@ class BaseLightController(object):
   # api that controls lighting
   _api = None
 
-  def __init__(self, colors, api):
+  # array of lights to control
+  _lights = []
+
+  def __init__(self, colors, api, lights):
     super(object, self).__init__()
     self._colors = colors
     self._api = api
+    self._lights = lights
 
-  def turnOnColor(self,color):
+  def turnOnColor(self, color):
     pass

@@ -16,16 +16,7 @@ ledController  = BiblioPixelLedController(colors, driver)
 api = sengled.api_from_env()
 colored_lights = api.filter_colored_lamps()
 living_room_lights = list(filter(lambda x: ("LivingRoom" in x.name), colored_lights))
-
-
-ledController.turnOnColor("red")
-api.set_color(living_room_lights, [255, 0, 0])
-
-import time
-time.sleep(4)
-
-ledController.turnOff()
-api.set_color(living_room_lights, [255, 255, 255])
+lightController = SengledLightController(api, colored_lights)
 
 
 # Create listener object that will listen for certain phrases
