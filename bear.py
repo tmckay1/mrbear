@@ -8,7 +8,7 @@ numLeds        = 35   # number of ambient leds
 threadedUpdate = True # update color in another thread
 colors         = BiblioPixelColors()
 driver         = PiWS281X(numLeds)
-ledController  = BiblioPixelLedController(colors, led)
+ledController  = BiblioPixelLedController(colors, driver)
 ledController.turnOnColor("red")
 sleep(4)
 ledController.turnOff()
