@@ -3,14 +3,14 @@ from colors.BiblioPixelColors import BiblioPixelColors
 from lightController.SengledLightController import SengledLightController
 from colors.SengledColors import SengledColors
 from voicePlayer.BearVoicePlayer import BearVoicePlayer
+from listeners.SummonListener import SummonListener
 
 from bibliopixel.drivers.PiWS281X import PiWS281X
 
 import sengled 
 
 # init led controller
-numLeds        = 35   # number of ambient leds
-threadedUpdate = True # update color in another thread
+numLeds        = 35
 colors         = BiblioPixelColors()
 driver         = PiWS281X(numLeds)
 ledController  = BiblioPixelLedController(colors, driver)
@@ -24,6 +24,7 @@ lightController = SengledLightController(colors, api, colored_lights)
 
 # init voice player
 voicePlayer = BearVoicePlayer()
-voicePlayer.playName("greg")
 
 # init listener and listen
+listener = SummonListener()
+listener.listen()
