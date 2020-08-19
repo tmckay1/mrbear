@@ -2,7 +2,7 @@ from ledController.BiblioPixelLedController import BiblioPixelLedController
 from colors.BiblioPixelColors import BiblioPixelColors
 
 from bibliopixel.drivers.PiWS281X import PiWS281X
-from bibliopixel.layout.Strip import Strip
+from bibliopixel.layout.strip import Strip
 
 numLeds       = 35
 colors        = BiblioPixelColors()
