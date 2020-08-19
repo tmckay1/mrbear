@@ -4,7 +4,7 @@ class BaseColors(object):
   COLORS = {}
 
   def get_color(self, color):
-    return COLORS[color]
+    return self.COLORS[color]
 
   def get_colors(self):
     return self.COLORS
