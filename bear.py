@@ -1,5 +1,6 @@
 from ledController.BiblioPixelLedController import BiblioPixelLedController
 from colors.BiblioPixelColors import BiblioPixelColors
+from lightController.SengledLightController import SengledLightController
 
 from bibliopixel.drivers.PiWS281X import PiWS281X
 
