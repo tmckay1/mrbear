@@ -31,8 +31,11 @@ class BaseNames(object):
     names = []
     for name in self.get_raw_names():
       if name in audio:
+        print("found name in audio: " + name)
         names.append(self.translate_name(name))
 
+    print("names: " + str(names))
+    print("raw names: " + str(self.get_raw_names()))
     # only return 2 names or none
     return names if len(names) == 2 else None
 
