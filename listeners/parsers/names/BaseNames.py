@@ -19,18 +19,25 @@ class BaseNames(object):
     return self.TRANSLATED_NAMES.keys()
 
   def extract_name(self, audio):
+    print("extract_name")
     names = []
+    words = audio.split()
     for name in self.get_raw_names():
-      if name in audio:
+      if name in words:
+        print("found name in audio: " + name)
         names.append(self.translate_name(name))
 
+    print("names: " + str(names))
+    print("raw names: " + str(self.get_raw_names()))
     # only return 1 name
     return names[0] if len(names) == 1 else None
 
   def extract_names(self, audio):
+    print("extract_names")
     names = []
+    words = audio.split()
     for name in self.get_raw_names():
-      if name in audio:
+      if name in words:
         print("found name in audio: " + name)
         names.append(self.translate_name(name))
 

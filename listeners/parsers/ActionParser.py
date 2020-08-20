@@ -14,7 +14,6 @@ class ActionParser(BaseParser):
     self._actions = actions
 
   def _parse(self, audio):
-    print("in action parser")
     action = self._parse_action_from_audio(audio)
     print("parsed the action: " + str(action))
     if action == "dispute":
