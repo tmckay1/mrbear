@@ -31,41 +31,33 @@ class BearScript(object):
     while True:
       # only continue if summoned
       if self.listen_for_summoned():
-        self.run_wakeup_sequence()
+        self.run_wakeup_sequence(1)
 
-  def run_wakeup_sequence(self):
+  def run_wakeup_sequence(self, retries):
     self.run_wakeup_step()
     name = self.listen_for_speaker_name()
 
-    # if we get the name continue, otherwise retry once
+    # if we get the name continue, otherwise retry
     if name:
-      self.run_recognize_name_sequence(name)
-    else:
+      self.run_recognize_name_sequence(name, 1)
+    elif retries > 0:
       self.run_retry_step()
-      name = self.listen_for_speaker_name()
+      self.run_wakeup_sequence(retries - 1)
+    else:
+      self.run_error_step()
 
-      # if we get the name continue, otherwise retry once
-      if name:
-        self.run_recognize_name_sequence(name)
-      else:
-        # error out
-        self.run_error_step()
-
-  def run_recognize_name_sequence(self, name):
+  def run_recognize_name_sequence(self, name, retries):
     self.run_name_recognized_step(name)
     names = self.listen_for_action_and_names()
 
-    # if we get the names continue, otherwise retry once
+    # if we get the names continue, otherwise retry
     if names:
       self.run_pick_winner_step(names)
-    else:
+    elif retries > 0:
       self.run_retry_step()
-      names = self.listen_for_action_and_names()
-      if names:
-        self.run_pick_winner_step(names)
-      else:
-        # error out
-        self.run_error_step()
+      self.run_recognize_name_sequence(name, retries - 1)
+    else:
+      self.run_error_step()
 
   def run_beginning_lights_step(self):
     self._led_controller.turn_on_color("red")
