@@ -57,7 +57,7 @@ class BearScript(object):
 
     # if we get the names continue, otherwise retry once
     if names:
-      self.run_pick_winner(names)
+      self.run_pick_winner_step(names)
     else:
       self.run_retry_step()
       names = self.listen_for_action_and_names()
