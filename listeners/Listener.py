@@ -34,7 +34,7 @@ class Listener(object):
 
   def audio_recognized(self, audio):
     print("recognized audio as " + audio)
-    self._parser.parse(audio)
+    return self._parser.parse(audio)
 
   def audio_unrecognized(self):
     print("could not recognize audio")
