@@ -40,7 +40,7 @@ class BearScript(object):
 
           # if we get the names continue, otherwise retry once
           if names:
-            self.run_winner_names(names)
+            self.run_winner(names)
           else:
             print("unrecognizable action")
 
@@ -52,17 +52,17 @@ class BearScript(object):
   def run_wakeup(self):
     total_wake_ups = 8
     wake_up_index = random.randint(1, total_wake_ups)
-    voice_player.play_wake_up(wake_up_index)
+    self._voice_player.play_wake_up(wake_up_index)
 
   def run_recognize_name(self, name):
     # play name recognition
     total_name_recordings = 8
     name_recording_index = random.randint(1, total_name_recordings)
-    voice_player.play_intro(name, name_recording_index)
+    self._voice_player.play_intro(name, name_recording_index)
 
   def run_winner(self, winner):
     winner = all_names.pick_winner(names)
-    voice_player.play_ending(winner)
+    self._voice_player.play_ending(winner)
 
   def listen_for_speaker_name(self):
     all_names = AllNames()
