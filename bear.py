@@ -43,7 +43,7 @@ while True:
     # wake up
     total_wake_ups = 8
     wake_up_index = random.randint(1, total_wake_ups)
-    voice_player.playWakeUp(wake_up_index)
+    voice_player.play_wake_up(wake_up_index)
 
     # listen for names
     all_names = AllNames()
