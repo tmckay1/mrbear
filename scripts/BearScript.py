@@ -29,89 +29,80 @@ class BearScript(object):
 
   def run(self):
     while True:
-
       # only continue if summoned
       if self.listen_for_summoned():
-        self.run_wakeup()
-        name = self.listen_for_speaker_name()
+        run_wakeup_sequence()
 
-        # if we get the name continue, otherwise retry once
-        if name:
-          self.run_recognize_name(name)
-          names = self.listen_for_action_and_names()
+  def run_wakeup_sequence(self):
+    self.run_wakeup_step()
+    name = self.listen_for_speaker_name()
 
-          # if we get the names continue, otherwise retry once
-          if names:
-            self.run_pick_winner(names)
-          else:
-            self.run_retry()
-            names = self.listen_for_action_and_names()
-            if names:
-              self.run_pick_winner(names)
-            else:
-              # error out
-              self.run_error()
+    # if we get the name continue, otherwise retry once
+    if name:
+      run_recognize_name_sequence(name)
+    else:
+      self.run_retry_step()
+      name = self.listen_for_speaker_name()
 
-        else:
-          self.run_retry()
-          name = self.listen_for_speaker_name()
+      # if we get the name continue, otherwise retry once
+      if name:
+        run_recognize_name_sequence(name)
+      else:
+        # error out
+        self.run_error_step()
 
-          # if we get the name continue, otherwise retry once
-          if name:
-            self.run_recognize_name(name)
-            names = self.listen_for_action_and_names()
+  def run_recognize_name_sequence(self, name):
+    self.run_name_recognized_step(name)
+    names = self.listen_for_action_and_names()
 
-            # if we get the names continue, otherwise retry once
-            if names:
-              self.run_pick_winner(names)
-            else:
-              self.run_retry()
-              names = self.listen_for_action_and_names()
-              if names:
-                self.run_pick_winner(names)
-              else:
-                # error out
-                self.run_error()
-          else:
-            # error out
-            self.run_error()
+    # if we get the names continue, otherwise retry once
+    if names:
+      self.run_pick_winner(names)
+    else:
+      self.run_retry_step()
+      names = self.listen_for_action_and_names()
+      if names:
+        self.run_pick_winner_step(names)
+      else:
+        # error out
+        self.run_error_step()
 
-  def run_beginning_lights(self):
+  def run_beginning_lights_step(self):
     self._led_controller.turn_on_color("red")
     self._light_controller.turn_on_color("red")
 
-  def run_end_cleanup(self):
+  def run_end_step(self):
     self._led_controller.turn_off()
     self._light_controller.turn_on_color("white")
 
-  def run_error(self):
+  def run_error_step(self):
     total_errors = 2
     error_index = random.randint(1, total_errors)
     self._voice_player.play_error(error_index)
-    self.run_end_cleanup()
+    self.run_end_step()
 
-  def run_retry(self):
+  def run_retry_step(self):
     total_retries = 2
     retry_index = random.randint(1, total_retries)
     self._voice_player.play_retry(retry_index)
 
-  def run_wakeup(self):
-    self.run_beginning_lights()
+  def run_wakeup_step(self):
+    self.run_beginning_lights_step()
     total_wake_ups = 8
     wake_up_index = random.randint(1, total_wake_ups)
     self._voice_player.play_wake_up(wake_up_index)
 
-  def run_recognize_name(self, name):
+  def run_name_recognized_step(self, name):
     # play name recognition
     total_name_recordings = 8
     name_recording_index = random.randint(1, total_name_recordings)
     self._voice_player.play_intro(name, name_recording_index)
 
-  def run_pick_winner(self, names):
+  def run_pick_winner_step(self, names):
     all_names = AllNames()
     winner = all_names.pick_winner(names)
     self._voice_player.play_ending(winner)
-    self.run_end_cleanup()
+    self.run_end_step()
 
   def listen_for_speaker_name(self):
     all_names = AllNames()
