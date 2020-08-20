@@ -31,7 +31,7 @@ class BearScript(object):
     while True:
       # only continue if summoned
       if self.listen_for_summoned():
-        run_wakeup_sequence()
+        self.run_wakeup_sequence()
 
   def run_wakeup_sequence(self):
     self.run_wakeup_step()
@@ -39,14 +39,14 @@ class BearScript(object):
 
     # if we get the name continue, otherwise retry once
     if name:
-      run_recognize_name_sequence(name)
+      self.run_recognize_name_sequence(name)
     else:
       self.run_retry_step()
       name = self.listen_for_speaker_name()
 
       # if we get the name continue, otherwise retry once
       if name:
-        run_recognize_name_sequence(name)
+        self.run_recognize_name_sequence(name)
       else:
         # error out
         self.run_error_step()
