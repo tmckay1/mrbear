@@ -77,11 +77,13 @@ class BearScript(object):
             self.run_error()
 
   def run_error(self):
+    print("running error")
     total_errors = 2
     error_index = random.randint(1, total_errors)
     self._voice_player.play_error(error_index)
 
   def run_retry(self):
+    print("running retry")
     total_retries = 2
     retry_index = random.randint(1, total_retries)
     self._voice_player.play_retry(retry_index)
@@ -92,6 +94,7 @@ class BearScript(object):
     self._voice_player.play_wake_up(wake_up_index)
 
   def run_recognize_name(self, name):
+    print("running recognize name")
     # play name recognition
     total_name_recordings = 8
     name_recording_index = random.randint(1, total_name_recordings)

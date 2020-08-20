@@ -21,9 +21,7 @@ class Listener(object):
       try:
         audio = r.recognize_google(audio)
         data = self.audio_recognized(audio)
-        print("listener audio is recognized: " + str(data))
         if data:
-          print("returning")
           return data
       except sr.UnknownValueError:
         if self.audio_unrecognized():
