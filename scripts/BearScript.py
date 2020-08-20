@@ -44,12 +44,47 @@ class BearScript(object):
           if names:
             self.run_pick_winner(names)
           else:
-            print("unrecognizable action")
+            self.run_retry()
+            names = self.listen_for_action_and_names()
+            if names:
+              self.run_pick_winner(names)
+            else:
+              # error out
+              self.run_error()
 
         else:
-          print("unrecognizable name")
-      else:
-        print("is not summoned")
+          self.run_retry()
+          name = self.listen_for_speaker_name()
+
+          # if we get the name continue, otherwise retry once
+          if name:
+            self.run_recognize_name(name)
+            names = self.listen_for_action_and_names()
+
+            # if we get the names continue, otherwise retry once
+            if names:
+              self.run_pick_winner(names)
+            else:
+              self.run_retry()
+              names = self.listen_for_action_and_names()
+              if names:
+                self.run_pick_winner(names)
+              else:
+                # error out
+                self.run_error()
+          else:
+            # error out
+            self.run_error()
+
+  def run_error(self):
+    total_errors = 2
+    error_index = random.randint(1, total_errors)
+    self._voice_player.play_error(error_index)
+
+  def run_retry(self):
+    total_retries = 2
+    retry_index = random.randint(1, total_retries)
+    self._voice_player.play_retry(retry_index)
 
   def run_wakeup(self):
     total_wake_ups = 8

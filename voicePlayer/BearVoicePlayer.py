@@ -14,6 +14,14 @@ class BearVoicePlayer(BaseVoicePlayer):
     path = self._audio_repo + "intros/" + name + "intro" + str(index) + ".mp3"
     self.play_audio(path)
 
+  def play_error(self, index):
+    path = self._audio_repo + "error/error" + str(index) + ".mp3"
+    self.play_audio(path)
+
+  def play_retry(self, index):
+    path = self._audio_repo + "retry/error" + str(index) + ".mp3"
+    self.play_audio(path)
+
   def play_wake_up(self, index):
     path = self._audio_repo + "wakingup/wakeup" + str(index) + ".mp3"
     self.play_audio(path)
