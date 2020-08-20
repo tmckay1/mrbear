@@ -8,6 +8,8 @@ from listeners.parsers.ActionParser import ActionParser
 from listeners.parsers.names.AllNames import AllNames
 from listeners.parsers.actions.BearActions import BearActions
 
+import random
+
 class BearScript(object):
 
   # controller to change led lights

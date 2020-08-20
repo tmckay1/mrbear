@@ -8,8 +8,6 @@ from bibliopixel.drivers.PiWS281X import PiWS281X
 
 import sengled
 
-import random
-
 # init led controller
 numLeds        = 35
 colors         = BiblioPixelColors()
