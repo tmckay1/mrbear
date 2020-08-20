@@ -27,7 +27,7 @@ class Listener(object):
         if self.audio_unrecognized():
           return None
       except sr.RequestError as e:
-        if self.request_error(e)
+        if self.request_error(e):
           return None
 
   def audio_recognized(self, audio):
