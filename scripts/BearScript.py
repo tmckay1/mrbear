@@ -33,8 +33,9 @@ class BearScript(object):
       if self.listen_for_summoned():
         self.run_wakeup_sequence(1)
 
-  def run_wakeup_sequence(self, retries):
-    self.run_wakeup_step()
+  def run_wakeup_sequence(self, retries, wakeup = True):
+    if wakeup:
+      self.run_wakeup_step()
     name = self.listen_for_speaker_name()
 
     # if we get the name continue, otherwise retry
@@ -42,12 +43,13 @@ class BearScript(object):
       self.run_recognize_name_sequence(name, 1)
     elif retries > 0:
       self.run_retry_step()
-      self.run_wakeup_sequence(retries - 1)
+      self.run_wakeup_sequence(retries - 1, wakeup = False)
     else:
       self.run_error_step()
 
-  def run_recognize_name_sequence(self, name, retries):
-    self.run_name_recognized_step(name)
+  def run_recognize_name_sequence(self, name, retries, recognize_name = True):
+    if recognize_name:
+      self.run_name_recognized_step(name)
     names = self.listen_for_action_and_names()
 
     # if we get the names continue, otherwise retry
@@ -55,7 +57,7 @@ class BearScript(object):
       self.run_pick_winner_step(names)
     elif retries > 0:
       self.run_retry_step()
-      self.run_recognize_name_sequence(name, retries - 1)
+      self.run_recognize_name_sequence(name, retries - 1, False)
     else:
       self.run_error_step()
 
