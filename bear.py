@@ -37,7 +37,8 @@ while True:
   parser = SummonParser()
   listener = SummonListener(parser)
 
-  if listener.listen():
+  is_summoned = listener.listen()
+  if is_summoned:
     print("we are summoned")
     # wake up
     total_wake_ups = 8
@@ -75,5 +76,7 @@ while True:
 
     else:
       print("unrecognizable name")
+  else:
+    print("is not summoned")
 
 
