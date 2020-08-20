@@ -9,9 +9,9 @@ from bibliopixel.drivers.PiWS281X import PiWS281X
 import sengled
 
 # init led controller
-numLeds        = 35
-colors         = BiblioPixelColors()
-driver         = PiWS281X(numLeds)
+numLeds         = 35
+colors          = BiblioPixelColors()
+driver          = PiWS281X(numLeds)
 led_controller  = BiblioPixelLedController(colors, driver)
 
 # init lighting controller

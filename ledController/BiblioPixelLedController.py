@@ -14,12 +14,12 @@ class BiblioPixelLedController(object):
     self._colors = colors
     self._led = Strip(driver)
 
-  def turnOff(self):
+  def turn_off(self):
     self._led.all_off()
     self._led.push_to_driver()
     self._led.start()
 
-  def turnOnColor(self, color):
+  def turn_on_color(self, color):
     color = self._colors.get_color(color)
     self._led.fill(color)
     self._led.push_to_driver()

@@ -77,6 +77,9 @@ class BearScript(object):
             self.run_error()
 
   def run_error(self):
+    self._led_controller.turn_off()
+    self._light_controller.turn_on_color("white")
+
     print("running error")
     total_errors = 2
     error_index = random.randint(1, total_errors)
@@ -89,6 +92,9 @@ class BearScript(object):
     self._voice_player.play_retry(retry_index)
 
   def run_wakeup(self):
+    self._led_controller.turn_on_color("red")
+    self._light_controller.turn_on_color("red")
+
     total_wake_ups = 8
     wake_up_index = random.randint(1, total_wake_ups)
     self._voice_player.play_wake_up(wake_up_index)

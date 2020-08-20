@@ -15,5 +15,5 @@ class BaseLightController(object):
     self._api = api
     self._lights = lights
 
-  def turnOnColor(self, color):
+  def turn_on_color(self, color):
     pass
