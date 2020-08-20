@@ -107,6 +107,7 @@ class BearScript(object):
     self._voice_player.play_intro(name, name_recording_index)
 
   def run_pick_winner(self, winner):
+    all_names = AllNames()
     winner = all_names.pick_winner(names)
     self._voice_player.play_ending(winner)
 
