@@ -47,9 +47,9 @@ class BaseNames(object):
     return names if len(names) == 2 else None
 
   def pick_winner(self, names):
-    total_weight = get_weight(names[0]) + get_weight(names[1])
+    total_weight = self.get_weight(names[0]) + self.get_weight(names[1])
     rand_num = random.randint(1, total_weight)
-    return names[0] if rand_num <= get_weight(names[0]) else names[1]
+    return names[0] if rand_num <= self.get_weight(names[0]) else names[1]
 
   def translate_name(self, name):
     return self.TRANSLATED_NAMES[name]
