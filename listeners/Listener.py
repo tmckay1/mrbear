@@ -11,6 +11,7 @@ class Listener(object):
 
   def listen(self):
     while True:
+      print("in listener " + str(self.__class__.__name__))
       # obtain audio from the microphone
       r = sr.Recognizer()
       with sr.Microphone() as source:
@@ -22,6 +23,7 @@ class Listener(object):
         audio = r.recognize_google(audio)
         data = self.audio_recognized(audio)
         if data:
+          print("received data " + str(data))
           return data
       except sr.UnknownValueError:
         if self.audio_unrecognized():
