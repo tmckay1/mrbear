@@ -13,10 +13,10 @@ class BaseNames(object):
     return self.WEIGHTED_NAMES[name]
 
   def get_names(self):
-    return self.WEIGHTED_NAMES.key()
+    return self.WEIGHTED_NAMES.keys()
 
   def get_raw_names(self):
-    return self.TRANSLATED_NAMES.key()
+    return self.TRANSLATED_NAMES.keys()
 
   def extract_name(self, audio):
     names = []
