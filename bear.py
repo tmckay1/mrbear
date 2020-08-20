@@ -4,6 +4,8 @@ from lightController.SengledLightController import SengledLightController
 from colors.SengledColors import SengledColors
 from voicePlayer.BearVoicePlayer import BearVoicePlayer
 from listeners.SummonListener import SummonListener
+from listeners.NameListener import NameListener
+from listeners.ActionListener import ActionListener
 from listeners.parsers.SummonParser import SummonParser
 from listeners.parsers.NameParser import NameParser
 from listeners.parsers.ActionParser import ActionParser
