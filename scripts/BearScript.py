@@ -76,35 +76,37 @@ class BearScript(object):
             # error out
             self.run_error()
 
-  def run_error(self):
+  def run_beginning_lights(self):
+    self._led_controller.turn_on_color("red")
+    self._light_controller.turn_on_color("red")
+
+  def run_end_cleanup(self):
     self._led_controller.turn_off()
     self._light_controller.turn_on_color("white")
 
-    print("running error")
+  def run_error(self):
     total_errors = 2
     error_index = random.randint(1, total_errors)
     self._voice_player.play_error(error_index)
+    self.run_end_cleanup()
 
   def run_retry(self):
-    print("running retry")
     total_retries = 2
     retry_index = random.randint(1, total_retries)
     self._voice_player.play_retry(retry_index)
 
   def run_wakeup(self):
-    self._led_controller.turn_on_color("red")
-    self._light_controller.turn_on_color("red")
-
+    self.run_beginning_lights()
     total_wake_ups = 8
     wake_up_index = random.randint(1, total_wake_ups)
     self._voice_player.play_wake_up(wake_up_index)
 
   def run_recognize_name(self, name):
-    print("running recognize name")
     # play name recognition
     total_name_recordings = 8
     name_recording_index = random.randint(1, total_name_recordings)
     self._voice_player.play_intro(name, name_recording_index)
+    self.run_end_cleanup()
 
   def run_pick_winner(self, names):
     all_names = AllNames()
