@@ -35,7 +35,7 @@ voice_player = BearVoicePlayer()
 while True:
   # listen for summon call
   parser = SummonParser()
-  listener = SummonListener()
+  listener = SummonListener(parser)
 
   if listener.listen():
     print("we are summoned")
