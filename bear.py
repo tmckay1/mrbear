@@ -61,7 +61,7 @@ while True:
       name_recording_index = random.randint(1, total_name_recordings)
       voice_player.play_intro(name, name_recording_index)
 
-      # listen for action]
+      # listen for action
       actions = BearActions()
       action_parser = ActionParser(all_names, actions)
       listener = ActionListener(action_parser)
