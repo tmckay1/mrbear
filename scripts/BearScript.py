@@ -106,12 +106,12 @@ class BearScript(object):
     total_name_recordings = 8
     name_recording_index = random.randint(1, total_name_recordings)
     self._voice_player.play_intro(name, name_recording_index)
-    self.run_end_cleanup()
 
   def run_pick_winner(self, names):
     all_names = AllNames()
     winner = all_names.pick_winner(names)
     self._voice_player.play_ending(winner)
+    self.run_end_cleanup()
 
   def listen_for_speaker_name(self):
     all_names = AllNames()
