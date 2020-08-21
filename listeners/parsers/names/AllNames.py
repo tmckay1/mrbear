@@ -5,8 +5,6 @@ class AllNames(BaseNames):
   TRANSLATED_NAMES = {
     "andy": "andre",
     "andre": "andre",
-    "an": "ange",
-    "and": "ange",
     "ang": "ange",
     "ange": "ange",
     "angeline": "ange",

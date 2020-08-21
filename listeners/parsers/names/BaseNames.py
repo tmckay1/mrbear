@@ -31,16 +31,10 @@ class BaseNames(object):
   def extract_names(self, audio):
     names = []
     words = audio.split()
-    print("extract_names " + str(names))
-    print("words" + str(words))
-    print("audio " + str(audio))
-    print("raw " + str(self.get_raw_names()))
     for name in self.get_raw_names():
       if name in words:
-        print("found name " + name)
         names.append(self.translate_name(name))
 
-    print("names again " + str(names))
     # only return 2 names or none
     return names if len(names) == 2 else None
 
