@@ -28,7 +28,10 @@ class BearScript(object):
     self._voice_player = BearVoicePlayer()
 
   def run(self):
-    while True:
+    parser = SummonParser()
+    listener = SummonListener(parser)
+
+    while listener.listen():
       # only continue if summoned
       if self.listen_for_summoned():
         self.run_wakeup_sequence(1)
@@ -109,9 +112,4 @@ class BearScript(object):
     all_names = AllNames()
     action_parser = ActionParser(all_names, actions)
     listener = ActionListener(action_parser)
-    return listener.listen()
-
-  def listen_for_summoned(self):
-    parser = SummonParser()
-    listener = SummonListener(parser)
     return listener.listen()

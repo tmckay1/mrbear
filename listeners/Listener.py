@@ -10,27 +10,20 @@ class Listener(object):
     self._parser = parser
 
   def listen(self):
-    while True:
-      print("in listener " + str(self.__class__.__name__))
-      # obtain audio from the microphone
-      r = sr.Recognizer()
-      with sr.Microphone() as source:
-          print("Say something!")
-          audio = r.listen(source)
+    # obtain audio from the microphone
+    r = sr.Recognizer()
+    with sr.Microphone() as source:
+        print("Say something!")
+        audio = r.listen(source)
 
-      # recognize speech using google
-      try:
-        audio = r.recognize_google(audio)
-        data = self.audio_recognized(audio)
-        if data:
-          print("received data " + str(data))
-          return data
-      except sr.UnknownValueError:
-        if self.audio_unrecognized():
-          return None
-      except sr.RequestError as e:
-        if self.request_error(e):
-          return None
+    # recognize speech using google
+    try:
+      audio = r.recognize_google(audio)
+      return self.audio_recognized(audio)
+    except sr.UnknownValueError:
+      return self.audio_unrecognized()
+    except sr.RequestError as e:
+      return self.request_error(e)
 
   def audio_recognized(self, audio):
     print("recognized audio as " + audio)
@@ -38,8 +31,8 @@ class Listener(object):
 
   def audio_unrecognized(self):
     print("could not recognize audio")
-    return False
+    return None
 
   def request_error(self, e):
     print("encountered request error")
-    return False
+    return None
