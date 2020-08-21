@@ -6,6 +6,7 @@ class AllNames(BaseNames):
     "andy": "andre",
     "andre": "andre",
     "an": "ange",
+    "and": "ange",
     "ang": "ange",
     "ange": "ange",
     "angeline": "ange",
