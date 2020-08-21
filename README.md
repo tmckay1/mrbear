@@ -1,5 +1,5 @@
 # mrbear
-A simple program to determine the winner of a dispute that has a persona of a grizzly bear.
+A simple program to determine the winner of a dispute that has a persona of a grizzly bear. For more context visit the youtube video: https://youtu.be/OScg9Iu41F8
 
 # Requirements
 Uses four main external libraries:
