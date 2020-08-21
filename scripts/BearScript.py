@@ -54,6 +54,7 @@ class BearScript(object):
     if recognize_name:
       self.run_name_recognized_step(name)
     names = self.listen_for_action_and_names()
+    print("names " + str(names))
 
     # if we get the names continue, otherwise retry
     if names:
