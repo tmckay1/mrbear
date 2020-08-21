@@ -14,6 +14,11 @@ class BiblioPixelLedController(object):
     self._colors = colors
     self._led = Strip(driver)
 
+  def turn_on_raw(self, color):
+    self._led.fill(color)
+    self._led.push_to_driver()
+    self._led.start()
+
   def turn_off(self):
     self._led.all_off()
     self._led.push_to_driver()
