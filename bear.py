@@ -1,6 +1,6 @@
-from ledController.BiblioPixelLedController import BiblioPixelLedController
+from led_controller.BiblioPixelLedController import BiblioPixelLedController
+from light_controller.SengledLightController import SengledLightController
 from colors.BiblioPixelColors import BiblioPixelColors
-from lightController.SengledLightController import SengledLightController
 from colors.SengledColors import SengledColors
 from scripts.BearScript import BearScript
 

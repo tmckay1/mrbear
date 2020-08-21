@@ -26,7 +26,7 @@ class Listener(object):
       return self.request_error(e)
 
   def audio_recognized(self, audio):
-    print("recognized audio as " + audio)
+    print("recognized audio as '" + audio + "'")
     return self._parser.parse(audio)
 
   def audio_unrecognized(self):
@@ -34,5 +34,5 @@ class Listener(object):
     return None
 
   def request_error(self, e):
-    print("encountered request error")
+    print("encountered request error" + str(e))
     return None

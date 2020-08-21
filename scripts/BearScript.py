@@ -1,7 +1,5 @@
-from voicePlayer.BearVoicePlayer import BearVoicePlayer
-from listeners.SummonListener import SummonListener
-from listeners.NameListener import NameListener
-from listeners.ActionListener import ActionListener
+from voice_player.BearVoicePlayer import BearVoicePlayer
+from listeners.Listener import Listener
 from listeners.parsers.SummonParser import SummonParser
 from listeners.parsers.NameParser import NameParser
 from listeners.parsers.ActionParser import ActionParser
@@ -28,12 +26,14 @@ class BearScript(object):
     self._voice_player = BearVoicePlayer()
 
   def run(self):
-    parser = SummonParser()
-    listener = SummonListener(parser)
+    self.run_hello_step()
 
+    parser = SummonParser()
+    summoner = Listener(parser)
     while True:
+
       # only continue if summoned
-      if listener.listen():
+      if summoner.listen():
         self.run_wakeup_sequence(1)
 
   def run_wakeup_sequence(self, retries, wakeup = True):
@@ -78,6 +78,11 @@ class BearScript(object):
     self._voice_player.play_error(error_index)
     self.run_end_step()
 
+  def run_hello_step(self):
+    total_hellos = 2
+    hello_index = random.randint(1, total_hellos)
+    self._voice_player.play_hello(hello_index)
+
   def run_retry_step(self):
     total_retries = 2
     retry_index = random.randint(1, total_retries)
@@ -104,12 +109,12 @@ class BearScript(object):
   def listen_for_speaker_name(self):
     all_names = AllNames()
     name_parser = NameParser(all_names)
-    listener = NameListener(name_parser)
+    listener = Listener(name_parser)
     return listener.listen()
 
   def listen_for_action_and_names(self):
     actions = BearActions()
     all_names = AllNames()
     action_parser = ActionParser(all_names, actions)
-    listener = ActionListener(action_parser)
+    listener = Listener(action_parser)
     return listener.listen()
