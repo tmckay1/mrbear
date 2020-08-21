@@ -31,9 +31,9 @@ class BearScript(object):
     parser = SummonParser()
     listener = SummonListener(parser)
 
-    while listener.listen():
+    while True:
       # only continue if summoned
-      if self.listen_for_summoned():
+      if listener.listen():
         self.run_wakeup_sequence(1)
 
   def run_wakeup_sequence(self, retries, wakeup = True):
