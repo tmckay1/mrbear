@@ -30,6 +30,10 @@ class BearVoicePlayer(BaseVoicePlayer):
     path = self._audio_repo + "wakingup/wakeup" + str(index) + ".mp3"
     self.play_audio(path)
 
+  def play_welcome(self, index):
+    path = self._audio_repo + "welcome/welcome" + str(index) + ".mp3"
+    self.play_audio(path)
+
   def _play_ending_part1(self, index):
     path = self._audio_repo + "ending/intro" + str(index) + ".mp3"
     self.play_audio(path)
